@@ -10,11 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository (with submodules)
         uses: actions/checkout@v4
         with:
-          submodules: false      
-          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          submodules: recursive      # ✅ fetches all submodules
+          fetch-depth: 0             # ✅ fetch full commit history
 
       - name: Set up Python
         uses: actions/setup-python@v5
